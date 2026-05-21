@@ -1,0 +1,270 @@
+@import "tailwindcss";
+
+:root {
+  --color-ivory: #fbf6ef;
+  --color-ivory-strong: #fffdf8;
+  --color-burgundy: #6e233a;
+  --color-burgundy-deep: #471425;
+  --color-rose: #c77f91;
+  --color-gold: #caa36d;
+  --color-gold-soft: #ead4ac;
+  --color-coral: #e98a73;
+  --color-beige: #ebe0d1;
+  --color-charcoal: #1f191b;
+  --color-muted: #6b6064;
+  --color-panel: rgba(255, 255, 255, 0.74);
+  --color-panel-strong: rgba(255, 253, 249, 0.9);
+  --color-border: rgba(110, 35, 58, 0.12);
+  --shadow-soft: 0 24px 60px rgba(44, 22, 30, 0.08);
+  --shadow-card: 0 18px 42px rgba(44, 22, 30, 0.1);
+}
+
+@theme inline {
+  --color-background: var(--color-ivory);
+  --color-foreground: var(--color-charcoal);
+}
+
+* {
+  border-color: var(--color-border);
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--color-ivory);
+}
+
+body {
+  min-height: 100%;
+  background:
+    radial-gradient(circle at top left, rgba(199, 127, 145, 0.18), transparent 24%),
+    radial-gradient(circle at top right, rgba(234, 212, 172, 0.26), transparent 22%),
+    linear-gradient(180deg, #fffdf8 0%, #fbf6ef 44%, #f8f0e5 100%);
+  color: var(--color-charcoal);
+  text-rendering: optimizeLegibility;
+}
+
+a,
+button,
+input,
+select,
+textarea {
+  transition:
+    color 180ms ease,
+    background-color 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    transform 180ms ease;
+}
+
+::selection {
+  background: rgba(110, 35, 58, 0.18);
+  color: var(--color-burgundy-deep);
+}
+
+.font-display {
+  font-family: var(--font-display), "Playfair Display", Georgia, serif;
+}
+
+.section-shell {
+  margin-inline: auto;
+  width: 100%;
+  max-width: 80rem;
+  padding-inline: 1rem;
+}
+
+@media (min-width: 640px) {
+  .section-shell {
+    padding-inline: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .section-shell {
+    padding-inline: 2rem;
+  }
+}
+
+.section-space {
+  padding-block: 5rem;
+}
+
+@media (min-width: 640px) {
+  .section-space {
+    padding-block: 6rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .section-space {
+    padding-block: 7rem;
+  }
+}
+
+.glass-panel {
+  background: var(--color-panel);
+  backdrop-filter: blur(16px);
+  box-shadow: var(--shadow-soft);
+}
+
+.surface-panel {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(255, 250, 243, 0.72));
+  box-shadow: var(--shadow-card);
+}
+
+.fabric-panel {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.fabric-panel::before {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(140deg, rgba(255, 255, 255, 0.2), transparent 42%),
+    repeating-linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.06) 0,
+      rgba(255, 255, 255, 0.06) 2px,
+      transparent 2px,
+      transparent 18px
+    );
+  content: "";
+  pointer-events: none;
+}
+
+.fabric-panel::after {
+  position: absolute;
+  inset: auto 8% 0;
+  height: 8rem;
+  background: linear-gradient(180deg, transparent, rgba(17, 12, 14, 0.5));
+  content: "";
+  pointer-events: none;
+}
+
+.section-wash {
+  position: relative;
+}
+
+.section-wash::before {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background:
+    radial-gradient(circle at top right, rgba(234, 212, 172, 0.18), transparent 26%),
+    radial-gradient(circle at bottom left, rgba(199, 127, 145, 0.16), transparent 28%);
+  content: "";
+  pointer-events: none;
+}
+
+.stitch-rule {
+  position: relative;
+  height: 1.25rem;
+}
+
+.stitch-rule::before {
+  position: absolute;
+  inset: 50% 0 auto;
+  border-top: 2px dashed rgba(110, 35, 58, 0.24);
+  content: "";
+  transform: translateY(-50%);
+}
+
+.stitch-rule::after {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  height: 0.75rem;
+  width: 0.75rem;
+  border: 2px solid rgba(110, 35, 58, 0.4);
+  border-radius: 999px;
+  background: var(--color-ivory-strong);
+  box-shadow: 0 0 0 6px rgba(251, 246, 239, 0.92);
+  content: "";
+  transform: translate(-50%, -50%);
+}
+
+.thread-track {
+  position: absolute;
+  inset: auto 1.5rem 1.75rem;
+  height: 3rem;
+}
+
+.thread-track::before {
+  position: absolute;
+  inset: 50% 0 auto;
+  border-top: 2px dashed rgba(255, 255, 255, 0.72);
+  content: "";
+  transform: translateY(-50%);
+}
+
+.scissor-glide {
+  animation: scissor-slide 8s ease-in-out infinite;
+}
+
+.reveal {
+  opacity: 1;
+  transform: none;
+}
+
+.reveal-visible {
+  animation: fade-up 720ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+.sheen {
+  position: relative;
+  overflow: hidden;
+}
+
+.sheen::after {
+  position: absolute;
+  inset: -40% auto -40% -20%;
+  width: 30%;
+  background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  content: "";
+  transform: skewX(-20deg);
+  animation: sheen 9s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes scissor-slide {
+  0%,
+  100% {
+    transform: translate(0, -50%);
+  }
+  50% {
+    transform: translate(calc(100% - 3rem), -50%);
+  }
+}
+
+@keyframes sheen {
+  0%,
+  70%,
+  100% {
+    transform: translateX(0) skewX(-20deg);
+    opacity: 0;
+  }
+  10%,
+  55% {
+    opacity: 1;
+  }
+  40% {
+    transform: translateX(330%) skewX(-20deg);
+    opacity: 0;
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(2rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
